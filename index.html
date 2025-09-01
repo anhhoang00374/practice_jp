@@ -1,10 +1,470 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ôn tập tiếng Nhật — Trình chạy câu</title>
+    <style>
+        :root{
+            --bg: #f6f9fc;
+            --card: #ffffff;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --brand: #3b82f6; /* xanh giáo dục dịu */
+            --brand-2: #10b981; /* xanh ngọc dịu */
+            --danger: #ef4444;
+            --shadow: 0 8px 24px rgba(27, 51, 89, .08);
+            --radius: 16px;
+        }
+        *{box-sizing:border-box}
+        body{
+            margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+            background: radial-gradient(1200px 600px at 10% -10%, #e8f1ff 0%, transparent 40%),
+            radial-gradient(1200px 600px at 120% 10%, #e9fff6 0%, transparent 40%),
+            var(--bg);
+            color:var(--text);
+        }
+        header{ padding: 20px clamp(16px, 4vw, 32px); display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+        .logo{ width:44px; height:44px; border-radius: 12px; display:grid; place-items:center; font-weight:700; color:white; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: var(--shadow); }
+        h1{font-size: clamp(18px, 2.4vw, 26px); margin:0}
+        header p{margin:0; color:var(--muted)}
+
+        main{padding: 8px clamp(16px, 4vw, 32px) 32px;}
+        .panel{ background:var(--card); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
+        .grid{ display:grid; gap: 12px; }
+        .grid.controls{ grid-template-columns: repeat(12, 1fr); align-items:end; }
+        .control{ display:flex; flex-direction:column; gap:6px; }
+        .control label{ font-size:12px; color:var(--muted) }
+        .control select, .control input[type="range"], .control button{ width:100%; padding:10px 12px; border-radius:10px; border:1px solid #e5e7eb; background:#fff; color:var(--text); }
+        .control input[type="range"]{ padding:0; }
+        .row{ display:flex; gap:8px; flex-wrap:wrap; }
+
+        .btn{ cursor:pointer; border:0; padding:10px 14px; border-radius:12px; font-weight:600; }
+        .btn-primary{ background: linear-gradient(135deg, var(--brand), var(--brand-2)); color:#fff; }
+        .btn-ghost{ background: #f3f4f6; color:#111827; }
+
+        .status{ font-size: 12px; color: var(--muted); }
+
+        .player{ margin-top:16px; display:grid; grid-template-columns: 1fr; gap:12px; }
+        .display{ min-height: 180px; display:grid; align-items:center; justify-items:center; text-align:center; padding: 24px; border-radius: var(--radius); background:#fff; box-shadow: var(--shadow); }
+        .sentence{ font-size: clamp(20px, 3.4vw, 36px); line-height:1.4; }
+        .meta{ margin-top:8px; font-size:12px; color:var(--muted) }
+
+        .controls-row{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+        .chip{ padding:6px 10px; border-radius: 999px; font-size:12px; background:#eef2ff; color:#3730a3; }
+
+        .progress{ height:8px; background:#e5e7eb; border-radius:999px; overflow:hidden; }
+        .progress > div{ height:100%; background: linear-gradient(90deg, var(--brand), var(--brand-2)); width:0; }
+
+        .hint{ font-size:11px; color:var(--muted); }
+
+        .d-none{
+            display: none;
+        }
+
+        @media (max-width: 980px){ .grid.controls{ grid-template-columns: 1fr 1fr; } }
+        @media (min-width: 981px){ .grid.controls{ grid-template-columns: repeat(12, 1fr); } .span-3{ grid-column: span 3; } .span-2{ grid-column: span 2; } .span-4{ grid-column: span 4; } }
+    </style>
+    <!-- Nạp dữ liệu tĩnh từ assets/main.js -->
+    <script defer src="assets/main.js"></script>
 </head>
 <body>
-this is my first page
+<header>
+    <div class="logo">JP</div>
+    <div>
+        <h1>Ôn tập tiếng Nhật • chạy câu theo thời gian</h1>
+        <p class="d-none">Dữ liệu đọc trực tiếp từ <code>assets/main.js</code>. Chọn ngày · Chọn ngôn ngữ · Tự chạy theo tốc độ · Đánh dấu đã thuộc</p>
+    </div>
+</header>
+
+<main class="grid" aria-live="polite">
+    <!-- SUMMARY PANEL (không còn khu vực nạp file) -->
+    <section class="panel grid controls d-none" id="summaryPanel">
+        <div class="control span-4">
+            <label>Tổng quan dữ liệu</label>
+            <div class="chip" id="dataSummary">Đang chờ dữ liệu từ <code>assets/main.js</code>…</div>
+        </div>
+        <div class="control span-8">
+            <label>Gợi ý cấu trúc <code>assets/main.js</code></label>
+            <div class="status">Tạo biến global <code>window.JP_LESSONS = [ ... ]</code> (một mảng nhiều buổi, mỗi buổi có <code>day</code>, <code>topic</code>, <code>sections.japanese[]</code> và <code>sections.vietnamese[]</code> — mỗi câu có <code>id</code>, <code>text</code>).</div>
+        </div>
+    </section>
+
+    <!-- FILTER / CONTROL PANEL -->
+    <section class="panel grid controls" id="controlPanel" aria-disabled="true">
+        <div class="control span-2">
+            <label for="startDay">Từ buổi</label>
+            <select id="startDay"></select>
+        </div>
+        <div class="control span-2">
+            <label for="endDay">Đến buổi</label>
+            <select id="endDay"></select>
+            <div class="status" id="rangeWarn" hidden>Đã tự điều chỉnh để "Đến buổi" ≥ "Từ buổi".</div>
+        </div>
+        <div class="control span-3">
+            <label for="language">Ngôn ngữ ôn tập</label>
+            <select id="language">
+                <option value="japanese">Tiếng Nhật</option>
+                <option value="vietnamese">Tiếng Việt</option>
+            </select>
+        </div>
+        <div class="control span-3">
+            <label for="mode">Chế độ ôn</label>
+            <select id="mode">
+                <option value="all">Tất cả câu</option>
+                <option value="unlearned">Chỉ câu chưa thuộc</option>
+            </select>
+        </div>
+        <div class="control span-2">
+            <label for="speed">Tốc độ (giây/câu): <span id="speedLabel">3</span>s</label>
+            <input type="range" id="speed" min="1" max="10" step="0.5" value="3" />
+        </div>
+        <div class="control span-2">
+            <label for="shuffle">Ngẫu nhiên</label>
+            <select id="shuffle">
+                <option value="off">Tắt</option>
+                <option value="on">Bật</option>
+            </select>
+        </div>
+        <div class="control span-4">
+            <label>&nbsp;</label>
+            <div class="row">
+                <button class="btn btn-primary" id="apply">Cập nhật danh sách</button>
+                <button class="btn btn-ghost" id="resetLearned">Xoá đánh dấu đã thuộc</button>
+            </div>
+        </div>
+        <div class="control span-4">
+            <label>Thống kê</label>
+            <div class="status" id="stats">—</div>
+        </div>
+    </section>
+
+    <!-- PLAYER / DISPLAY -->
+    <section class="player" id="player" aria-disabled="true">
+        <div class="display" role="region" aria-live="polite" aria-atomic="true">
+            <div class="sentence" id="sentence">Đang chờ dữ liệu từ assets/main.js…</div>
+            <div class="meta" id="meta"></div>
+        </div>
+        <div class="progress"><div id="bar"></div></div>
+        <div class="controls-row">
+            <button class="btn btn-primary" id="play" disabled>▶️ Bắt đầu</button>
+            <button class="btn btn-ghost" id="pause" disabled>⏸️ Tạm dừng</button>
+            <button class="btn btn-ghost" id="prev" disabled>⏮️ Lùi</button>
+            <button class="btn btn-ghost" id="next" disabled>⏭️ Tiếp</button>
+            <button class="btn btn-ghost" id="loop">🔁 Lặp: Tắt</button>
+            <button class="btn btn-ghost" id="mark" disabled>✅ Đánh dấu đã thuộc</button>
+            <span class="hint">Phím tắt: Space (Play/Pause), ←/→ (Lùi/Tiếp), L (Đánh dấu)</span>
+        </div>
+    </section>
+</main>
+
+<script>
+    // ======= Trạng thái ứng dụng =======
+    const state = {
+        lessons: [],               // dữ liệu gốc từ JP_LESSONS
+        pool: [],                  // danh sách câu sau khi lọc
+        idx: 0,                    // vị trí hiện tại trong pool
+        timer: null,               // setTimeout handle
+        isPlaying: false,
+        loop: false,
+        prefsKey: 'jpReview:prefs:v2', // v2: bỏ các prefs liên quan đến file
+        learnedKey: (lang) => `jpReview:learned:${lang}:v1`,
+    };
+
+    // ======= Truy cập DOM =======
+    const $ = (sel) => document.querySelector(sel);
+    const dataSummary = $('#dataSummary');
+
+    const controlPanel= $('#controlPanel');
+    const startDaySel = $('#startDay');
+    const endDaySel   = $('#endDay');
+    const languageSel = $('#language');
+    const modeSel     = $('#mode');
+    const speedRange  = $('#speed');
+    const speedLabel  = $('#speedLabel');
+    const shuffleSel  = $('#shuffle');
+    const applyBtn    = $('#apply');
+    const resetLearnedBtn = $('#resetLearned');
+    const stats       = $('#stats');
+    const rangeWarn   = $('#rangeWarn');
+
+    const player      = $('#player');
+    const sentenceEl  = $('#sentence');
+    const metaEl      = $('#meta');
+    const barEl       = $('#bar');
+    const playBtn     = $('#play');
+    const pauseBtn    = $('#pause');
+    const prevBtn     = $('#prev');
+    const nextBtn     = $('#next');
+    const loopBtn     = $('#loop');
+    const markBtn     = $('#mark');
+
+    // ======= Tiện ích =======
+    function savePrefs() {
+        const prefs = {
+            language: languageSel.value,
+            mode: modeSel.value,
+            shuffle: shuffleSel.value,
+            speed: Number(speedRange.value),
+            startDay: Number(startDaySel.value || 1),
+            endDay: Number(endDaySel.value || 1),
+            loop: state.loop,
+        };
+        localStorage.setItem(state.prefsKey, JSON.stringify(prefs));
+    }
+    function loadPrefs() {
+        try {
+            const raw = localStorage.getItem(state.prefsKey);
+            if (!raw) return;
+            const prefs = JSON.parse(raw);
+            if (prefs.language) languageSel.value = prefs.language;
+            if (prefs.mode) modeSel.value = prefs.mode;
+            if (prefs.shuffle) shuffleSel.value = prefs.shuffle;
+            if (prefs.speed) speedRange.value = prefs.speed;
+            speedLabel.textContent = speedRange.value;
+            if (typeof prefs.loop === 'boolean') state.loop = prefs.loop;
+            loopBtn.textContent = `🔁 Lặp: ${state.loop ? 'Bật' : 'Tắt'}`;
+            // start/end day sẽ set sau khi có dữ liệu
+            if (prefs.startDay) startDaySel.dataset.pref = prefs.startDay;
+            if (prefs.endDay) endDaySel.dataset.pref = prefs.endDay;
+        } catch {}
+    }
+
+    function getLearnedSet(lang){
+        try{ return new Set(JSON.parse(localStorage.getItem(state.learnedKey(lang))||'[]')); }
+        catch{ return new Set(); }
+    }
+    function saveLearnedSet(lang, set){
+        localStorage.setItem(state.learnedKey(lang), JSON.stringify(Array.from(set)));
+    }
+
+    function shuffleInPlace(arr){
+        for(let i=arr.length-1;i>0;i--){
+            const j=Math.floor(Math.random()*(i+1));
+            [arr[i],arr[j]]=[arr[j],arr[i]];
+        }
+        return arr;
+    }
+
+    function enableControls(enabled){
+        controlPanel.setAttribute('aria-disabled', !enabled);
+        player.setAttribute('aria-disabled', !enabled);
+        [applyBtn, resetLearnedBtn, startDaySel, endDaySel, languageSel, modeSel, speedRange, shuffleSel, playBtn].forEach(el=>{
+            if (!el) return; el.disabled = !enabled;
+        });
+    }
+
+    function summarizeData(){
+        if(!state.lessons.length){ dataSummary.textContent='Chưa có dữ liệu'; return; }
+        const days = state.lessons.map(l=>Number(l.day)).filter(n=>!Number.isNaN(n));
+        const min = Math.min(...days), max = Math.max(...days);
+        let totalJP=0, totalVI=0;
+        for(const l of state.lessons){
+            totalJP += (l.sections?.japanese?.length || 0);
+            totalVI += (l.sections?.vietnamese?.length || 0);
+        }
+        dataSummary.textContent = `Có ${state.lessons.length} buổi (Day ${min} → ${max}) • JP: ${totalJP} câu • VI: ${totalVI} câu`;
+        populateDaySelects(min, max);
+    }
+
+    function populateDaySelects(min, max){
+        startDaySel.innerHTML = '';
+        endDaySel.innerHTML = '';
+        for(let d=min; d<=max; d++){
+            const o1=document.createElement('option'); o1.value=o1.textContent=d; startDaySel.appendChild(o1);
+            const o2=document.createElement('option'); o2.value=o2.textContent=d; endDaySel.appendChild(o2);
+        }
+        // Áp prefs nếu có
+        const prefStart = Number(startDaySel.dataset.pref || min);
+        const prefEnd = Number(endDaySel.dataset.pref || max);
+        startDaySel.value = Math.max(min, Math.min(prefStart, max));
+        endDaySel.value = Math.max(Number(startDaySel.value), Math.min(prefEnd, max));
+        validateRange();
+        updateStatsPreview();
+    }
+
+    function validateRange(){
+        const s = Number(startDaySel.value);
+        let e = Number(endDaySel.value);
+        if(e < s){ e = s; endDaySel.value = String(e); rangeWarn.hidden = false; }
+        else rangeWarn.hidden = true;
+    }
+
+    function buildPool(){
+        const s = Number(startDaySel.value), e = Number(endDaySel.value);
+        const lang = languageSel.value;
+        const mode = modeSel.value;
+        const learned = getLearnedSet(lang);
+        const pool = [];
+        for(const lesson of state.lessons){
+            const day = Number(lesson.day);
+            if (Number.isNaN(day) || day < s || day > e) continue;
+            const items = Array.isArray(lesson.sections?.[lang]) ? lesson.sections[lang] : [];
+            for(const it of items){
+                if(!it || typeof it.text !== 'string' || !it.id) continue;
+                if(mode === 'unlearned' && learned.has(it.id)) continue;
+                pool.push({ id: it.id, text: it.text, day, lang });
+            }
+        }
+        if (shuffleSel.value === 'on') shuffleInPlace(pool);
+        state.pool = pool;
+        state.idx = 0;
+        updateStatsPreview();
+        renderCurrent();
+        updateNavButtons();
+        savePrefs();
+    }
+
+    function updateStatsPreview(){
+        if(!state.lessons.length){ stats.textContent='—'; return; }
+        const s = Number(startDaySel.value||0), e = Number(endDaySel.value||0);
+        const lang = languageSel.value;
+        const learned = getLearnedSet(lang);
+        let total=0, unlearned=0;
+        for(const l of state.lessons){
+            const day = Number(l.day); if(Number.isNaN(day) || day < s || day > e) continue;
+            const arr = Array.isArray(l.sections?.[lang]) ? l.sections[lang] : [];
+            for(const it of arr){
+                if(!it || !it.id) continue;
+                total++;
+                if(!learned.has(it.id)) unlearned++;
+            }
+        }
+        stats.textContent = `Khoảng Day ${s} → ${e} • ${lang==='japanese'?'JP':'VI'}: ${total} câu • Chưa thuộc: ${unlearned}`;
+    }
+
+    function renderCurrent(){
+        const n = state.pool.length;
+        if(n === 0){
+            sentenceEl.textContent = 'Không có câu nào trong phạm vi / chế độ đã chọn.';
+            metaEl.textContent = '';
+            barEl.style.width = '0%';
+            markBtn.disabled = true; prevBtn.disabled = true; nextBtn.disabled = true;
+            return;
+        }
+        const i = Math.max(0, Math.min(state.idx, n-1));
+        state.idx = i;
+        const cur = state.pool[i];
+        sentenceEl.textContent = cur.text;
+        metaEl.textContent = `#${i+1}/${n} • Day ${cur.day} • ${cur.lang==='japanese'?'JP':'VI'} • ID: ${cur.id}`;
+        barEl.style.width = `${((i+1)/n)*100}%`;
+        // cập nhật nút mark theo learned
+        const learned = getLearnedSet(cur.lang);
+        const isLearned = learned.has(cur.id);
+        markBtn.textContent = isLearned ? '☑️ Bỏ đánh dấu' : '✅ Đánh dấu đã thuộc';
+        markBtn.disabled = false; prevBtn.disabled = false; nextBtn.disabled = false;
+    }
+
+    function updateNavButtons(){
+        const disabled = state.pool.length === 0;
+        [prevBtn, nextBtn, playBtn, pauseBtn, markBtn].forEach(b=> b.disabled = disabled);
+    }
+
+    function play(){
+        if(state.isPlaying || state.pool.length===0) return;
+        state.isPlaying = true;
+        playBtn.disabled = true; pauseBtn.disabled = false;
+        const tick = () => { if(!state.isPlaying) return; next(); };
+        const interval = () => Number(speedRange.value) * 1000;
+        function loop(){ if(!state.isPlaying) return; state.timer = setTimeout(()=>{ tick(); loop(); }, interval()); }
+        loop();
+    }
+
+    function pause(){
+        state.isPlaying = false; playBtn.disabled = false; pauseBtn.disabled = true;
+        if(state.timer) { clearTimeout(state.timer); state.timer = null; }
+    }
+
+    function next(){
+        if(state.pool.length===0) return;
+        const atEnd = state.idx >= state.pool.length - 1;
+        if(atEnd){ if(state.loop){ state.idx = 0; } else { pause(); return; } }
+        else { state.idx++; }
+        renderCurrent();
+    }
+    function prev(){ if(state.pool.length===0) return; state.idx = Math.max(0, state.idx - 1); renderCurrent(); }
+
+    function toggleLoop(){ state.loop = !state.loop; loopBtn.textContent = `🔁 Lặp: ${state.loop ? 'Bật' : 'Tắt'}`; savePrefs(); }
+
+    function toggleLearned(){
+        if(state.pool.length===0) return;
+        const cur = state.pool[state.idx];
+        const set = getLearnedSet(cur.lang);
+        const had = set.has(cur.id);
+        if(had) set.delete(cur.id); else set.add(cur.id);
+        saveLearnedSet(cur.lang, set);
+        if(!had && modeSel.value === 'unlearned'){
+            state.pool.splice(state.idx, 1);
+            if(state.idx >= state.pool.length) state.idx = Math.max(0, state.pool.length-1);
+        }
+        updateStatsPreview();
+        renderCurrent();
+    }
+
+    function resetLearned(){
+        if(!confirm('Xoá toàn bộ đánh dấu đã thuộc cho cả JP & VI?')) return;
+        saveLearnedSet('japanese', new Set());
+        saveLearnedSet('vietnamese', new Set());
+        updateStatsPreview();
+        renderCurrent();
+    }
+
+    // ======= NẠP DỮ LIỆU TỪ assets/main.js =======
+    async function parseAndSetData(json){
+        if(!Array.isArray(json)) throw new Error('JP_LESSONS phải là mảng các buổi học');
+        for(const [i, item] of json.entries()){
+            if(typeof item.day === 'undefined') throw new Error(`Phần tử #${i} thiếu trường day`);
+            if(!item.sections) throw new Error(`Phần tử #${i} thiếu sections`);
+        }
+        state.lessons = json.map(x=>({ day: Number(x.day), topic: x.topic || '', sections: x.sections || {} }));
+        summarizeData();
+        enableControls(true);
+        buildPool();
+    }
+
+    // ======= Sự kiện điều khiển =======
+    startDaySel.addEventListener('change', ()=>{ validateRange(); updateStatsPreview(); savePrefs(); });
+    endDaySel.addEventListener('change', ()=>{ validateRange(); updateStatsPreview(); savePrefs(); });
+    languageSel.addEventListener('change', ()=>{ updateStatsPreview(); savePrefs(); });
+    modeSel.addEventListener('change', ()=>{ updateStatsPreview(); savePrefs(); });
+    speedRange.addEventListener('input', ()=>{ speedLabel.textContent = speedRange.value; savePrefs(); });
+    shuffleSel.addEventListener('change', savePrefs);
+
+    applyBtn.addEventListener('click', buildPool);
+    resetLearnedBtn.addEventListener('click', resetLearned);
+
+    playBtn.addEventListener('click', play);
+    pauseBtn.addEventListener('click', pause);
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+    loopBtn.addEventListener('click', toggleLoop);
+    markBtn.addEventListener('click', toggleLearned);
+
+    // Phím tắt
+    document.addEventListener('keydown', (e)=>{
+        if(e.target && (e.target.tagName==='INPUT' || e.target.tagName==='SELECT' || e.target.isContentEditable)) return;
+        if(e.code === 'Space'){ e.preventDefault(); state.isPlaying ? pause() : play(); }
+        else if(e.code === 'ArrowRight'){ next(); }
+        else if(e.code === 'ArrowLeft'){ prev(); }
+        else if(e.key.toLowerCase() === 'l'){ toggleLearned(); }
+    });
+
+    // ======= Khởi tạo =======
+    (function init(){
+        loadPrefs();
+        // Đợi script assets/main.js khai báo window.JP_LESSONS
+        window.addEventListener('DOMContentLoaded', ()=>{
+            const data = window.JP_LESSONS;
+            if(Array.isArray(data)){
+                parseAndSetData(data).catch(err=>{
+                    sentenceEl.textContent = 'Lỗi dữ liệu: ' + err.message;
+                });
+            } else {
+                sentenceEl.textContent = 'Chưa tìm thấy dữ liệu. Hãy tạo assets/main.js và gán window.JP_LESSONS = [...].';
+                enableControls(false);
+            }
+        });
+    })();
+</script>
 </body>
 </html>
