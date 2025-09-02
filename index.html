@@ -48,7 +48,7 @@
         .player{ margin-top:16px; display:grid; grid-template-columns: 1fr; gap:12px; }
         /* [FLIP] thêm phối cảnh để lật 3D mượt */
         .display{ min-height: 180px; display:grid; align-items:center; justify-items:center; text-align:center; padding: 24px; border-radius: var(--radius); background:#fff; box-shadow: var(--shadow); perspective: 1200px; }
-        .sentence{ font-size: clamp(20px, 3.4vw, 36px); line-height:1.4; }
+        .sentence{ font-size: clamp(32px, 3.4vw, 48px); line-height:1.4; }
         .meta{ margin-top:8px; font-size:12px; color:var(--muted) }
 
         .controls-row{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
@@ -61,6 +61,7 @@
 
         /* [FLIP] card lật hai mặt */
         .card{ position: relative; width:100%; min-height: 120px; transform-style: preserve-3d; transition: transform .6s ease; }
+        .card.flipped{ transform: rotateY(180deg); }
         .face{ position:absolute; inset:0; display:grid; place-items:center; padding:8px; backface-visibility: hidden; }
         .face-back{ transform: rotateY(180deg); }
         .d-none{
@@ -162,7 +163,7 @@
             <div class="meta" id="meta"></div>
         </div>
         <div class="progress"><div id="bar"></div></div>
-        <div class="controls-row">
+        <div class="controls-row full-width">
             <button class="btn btn-primary" id="play" disabled>▶️ Bắt đầu</button>
             <button class="btn btn-ghost" id="pause" disabled>⏸️ Tạm dừng</button>
             <button class="btn btn-ghost" id="prev" disabled>⏮️ Lùi</button>
@@ -172,13 +173,13 @@
             <!-- [TTS] -->
             <button class="btn btn-ghost" id="ttsToggle" hidden>🔊 Phát âm: Tắt</button>
             <button class="btn btn-ghost" id="ttsSpeak" hidden>🔈 Phát câu này</button>
-            <span class="hint">Nhấn vào thẻ để lật JP ⇄ VI • Phím tắt: Space (Play/Pause), ←/→ (Lùi/Tiếp), L (Đánh dấu), F (Lật)</span>
+            <span class="hint d-none">Nhấn vào thẻ để lật JP ⇄ VI • Phím tắt: Space (Play/Pause), ←/→ (Lùi/Tiếp), L (Đánh dấu), F (Lật)</span>
         </div>
     </section>
 </main>
 
 <script>
-    // ======= Trạng thái ứng dụng (không đổi logic cũ, chỉ thêm flip + TTS) =======
+    // ======= Trạng thái ứng dụng (giữ logic cũ, chỉ thêm flip + TTS + shuffle an toàn) =======
     const state = {
         lessons: [],               // dữ liệu gốc từ JP_LESSONS
         pool: [],                  // danh sách câu sau khi lọc
@@ -283,7 +284,7 @@
     // [SAFE] Fisher–Yates, chống dữ liệu không phải mảng / độ dài lạ
     function shuffleInPlace(arr){
         if(!Array.isArray(arr)) return [];
-        const n = arr.length >>> 0; // đảm bảo số nguyên không âm
+        const n = arr.length >>> 0; // số nguyên không âm
         if(n < 2) return arr;
         for(let i = n - 1; i > 0; i--){
             const j = Math.floor(Math.random() * (i + 1));
@@ -294,7 +295,6 @@
         return arr;
     }
 
-
     function enableControls(enabled){
         controlPanel.setAttribute('aria-disabled', !enabled);
         player.setAttribute('aria-disabled', !enabled);
@@ -302,7 +302,6 @@
             if (!el) return; el.disabled = !enabled;
         });
         updateTtsUI();
-
     }
 
     function summarizeData(){
@@ -312,8 +311,8 @@
         const min = Math.min(...days), max = Math.max(...days);
         let totalJP=0, totalVI=0;
         for(const l of state.lessons){
-            totalJP += (l.sections?.japanese?.length || 0);
-            totalVI += (l.sections?.vietnamese?.length || 0);
+            totalJP += (Array.isArray(l.sections?.japanese) ? l.sections.japanese.length : 0);
+            totalVI += (Array.isArray(l.sections?.vietnamese) ? l.sections.vietnamese.length : 0);
         }
         dataSummary.textContent = `Có ${state.lessons.length} buổi (Day ${min} → ${max}) • JP: ${totalJP} câu • VI: ${totalVI} câu`;
         populateDaySelects(min, max);
@@ -328,8 +327,8 @@
         }
         const prefStart = Number(startDaySel.dataset.pref || min);
         const prefEnd = Number(endDaySel.dataset.pref || max);
-        startDaySel.value = Math.max(min, Math.min(prefStart, max));
-        endDaySel.value = Math.max(Number(startDaySel.value), Math.min(prefEnd, max));
+        startDaySel.value = String(Math.max(min, Math.min(prefStart, max)));
+        endDaySel.value = String(Math.max(Number(startDaySel.value), Math.min(prefEnd, max)));
         validateRange();
         updateStatsPreview();
     }
@@ -348,7 +347,7 @@
         const byId = (arr, id)=> Array.isArray(arr) ? (arr.find(x=>x && x.id===id)?.text || null) : null;
         const lesson = state.lessons.find(l=> Number(l.day)===cur.day );
         if(lesson){
-            // 1) thử theo id trong cùng buổi
+            // 1) theo id trong cùng buổi
             let t = byId(lesson.sections?.[other], cur.id);
             if(t) return t;
             // 2) fallback theo vị trí tương ứng trong buổi
@@ -379,7 +378,6 @@
                 pool.push({ id: it.id, text: it.text, day, lang, _idx: idx });
             }
         }
-        // if (shuffleSel.value === 'on') shuffleInPlace(pool);
         if (shuffleSel.value === 'on' && Array.isArray(pool) && pool.length > 1) shuffleInPlace(pool);
         state.pool = pool; state.idx = 0;
         updateStatsPreview();
@@ -464,39 +462,15 @@
     function cancelTTS(){ if(supportsTTS()) window.speechSynthesis.cancel(); }
     function updateTtsUI(){ const isJP = languageSel.value === 'japanese'; const can = supportsTTS(); ttsToggleBtn.hidden = !(isJP && can); ttsSpeakBtn.hidden  = !(isJP && can); ttsToggleBtn.textContent = `🔊 Phát âm: ${state.ttsEnabled ? 'Bật' : 'Tắt'}`; ttsSpeakBtn.disabled = !isJP || !can || state.pool.length===0; }
 
-    // ======= Chuẩn hoá dữ liệu nhẹ tại thời điểm nạp (không đổi pipeline cũ) =======
-    function normalizeLesson(item){
-        const dayNum = Number(item.day);
-        const sections = item.sections || {};
-        const jpRaw = Array.isArray(sections.japanese) ? sections.japanese : [];
-        const viRaw = Array.isArray(sections.vietnamese) ? sections.vietnamese : [];
-        const len = Math.max(jpRaw.length, viRaw.length);
-        const jp = []; const vi = [];
-        for(let i=0;i<len;i++){
-            const j = jpRaw[i]; const v = viRaw[i];
-            const pairId = (j && typeof j === 'object' && j.id) || (v && typeof v === 'object' && v.id) || `auto-${dayNum}-${i+1}`;
-            if(typeof j === 'string') jp.push({ id: pairId, text: j });
-            else if(j && typeof j.text === 'string') jp.push({ id: j.id || pairId, text: j.text });
-            if(typeof v === 'string') vi.push({ id: pairId, text: v });
-            else if(v && typeof v.text === 'string') vi.push({ id: v.id || pairId, text: v.text });
-        }
-        return { day: dayNum, topic: item.topic || '', sections: { japanese: jp, vietnamese: vi } };
-    }
-
-    // ======= NẠP DỮ LIỆU TỪ assets/main.js =======
+    // ======= NẠP DỮ LIỆU TỪ assets/main.js (giữ nguyên pipeline cũ) =======
     async function parseAndSetData(json){
         if(!Array.isArray(json)) throw new Error('JP_LESSONS phải là mảng các buổi học');
-        const lessons = [];
-
         for(const [i, item] of json.entries()){
             if(typeof item.day === 'undefined') throw new Error(`Phần tử #${i} thiếu trường day`);
             if(!item.sections) throw new Error(`Phần tử #${i} thiếu sections`);
-            const dayNum = Number(item.day); if(Number.isNaN(dayNum)) continue;
-            lessons.push(normalizeLesson(item));
         }
-        state.lessons = lessons;
+        state.lessons = json.map(x=>({ day: Number(x.day), topic: x.topic || '', sections: x.sections || {} }));
         summarizeData();
-        if(!lessons.length){ enableControls(false); return; }
         enableControls(true);
         buildPool();
     }
