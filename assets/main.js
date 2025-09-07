@@ -1946,5 +1946,999 @@ window.JP_LESSONS = [
                 }
             ]
         }
+    },
+    {
+        "day": 3,
+        "topic": "要件ヒアリング",
+        "sections": {
+            "japanese": [
+                {
+                    "id": "D1-001",
+                    "text": "本日は要件ヒアリングの目的と進め方を共有いたします。"
+                },
+                {
+                    "id": "D1-002",
+                    "text": "ヒアリングでは、背景と課題を体系的に整理いたします。"
+                },
+                {
+                    "id": "D1-003",
+                    "text": "次回のヒアリングでは、受入基準の仮置きを確認させてください。"
+                },
+                {
+                    "id": "D1-004",
+                    "text": "まず御社の要望を網羅的に洗い出させていただきます。"
+                },
+                {
+                    "id": "D1-005",
+                    "text": "要望と要件を区別して記録いたします。"
+                },
+                {
+                    "id": "D1-006",
+                    "text": "要望の優先度付けをご相談できますでしょうか。"
+                },
+                {
+                    "id": "D1-007",
+                    "text": "要件は受入基準とセットで定義いたします。"
+                },
+                {
+                    "id": "D1-008",
+                    "text": "非機能要件も併せて明記します。"
+                },
+                {
+                    "id": "D1-009",
+                    "text": "可視化のため要件をユースケースに落とし込みます。"
+                },
+                {
+                    "id": "D1-010",
+                    "text": "仕様は要件を具体化した文書でございます。"
+                },
+                {
+                    "id": "D1-011",
+                    "text": "仕様変更が発生した場合は影響範囲を明示します。"
+                },
+                {
+                    "id": "D1-012",
+                    "text": "仕様確定前は見積が暫定となります。"
+                },
+                {
+                    "id": "D1-013",
+                    "text": "現状把握のため、既存システムのフローをご共有ください。"
+                },
+                {
+                    "id": "D1-014",
+                    "text": "現状把握を踏まえ、移行リスクを洗い出します。"
+                },
+                {
+                    "id": "D1-015",
+                    "text": "現状把握の結果は議事録に反映します。"
+                },
+                {
+                    "id": "D1-016",
+                    "text": "背景を理解することで優先度の根拠が明確になります。"
+                },
+                {
+                    "id": "D1-017",
+                    "text": "背景の相違が誤解の原因となり得ます。"
+                },
+                {
+                    "id": "D1-018",
+                    "text": "背景はヒアリング冒頭に確認いたします。"
+                },
+                {
+                    "id": "D1-019",
+                    "text": "目的を定量指標に落とし込みます。"
+                },
+                {
+                    "id": "D1-020",
+                    "text": "目的が曖昧だとスコープが膨張します。"
+                },
+                {
+                    "id": "D1-021",
+                    "text": "目的と手段を混同しないようにいたします。"
+                },
+                {
+                    "id": "D1-022",
+                    "text": "本フェーズの範囲を明示いたします。"
+                },
+                {
+                    "id": "D1-023",
+                    "text": "範囲外の項目は別途提案いたします。"
+                },
+                {
+                    "id": "D1-024",
+                    "text": "範囲の境界条件を確認いたします。"
+                },
+                {
+                    "id": "D1-025",
+                    "text": "優先度はMust/Should/Couldで整理します。"
+                },
+                {
+                    "id": "D1-026",
+                    "text": "業務影響に基づき優先度を見直します。"
+                },
+                {
+                    "id": "D1-027",
+                    "text": "優先度に応じて段階的に実装します。"
+                },
+                {
+                    "id": "D1-028",
+                    "text": "仕様変更の影響範囲を可視化いたします。"
+                },
+                {
+                    "id": "D1-029",
+                    "text": "データ連携への影響範囲を確認します。"
+                },
+                {
+                    "id": "D1-030",
+                    "text": "影響範囲次第でスケジュールが変動します。"
+                },
+                {
+                    "id": "D1-031",
+                    "text": "ステークホルダーの利害を整理します。"
+                },
+                {
+                    "id": "D1-032",
+                    "text": "主要ステークホルダーの合意を先に取ります。"
+                },
+                {
+                    "id": "D1-033",
+                    "text": "ステークホルダー一覧を共有いたします。"
+                },
+                {
+                    "id": "D1-034",
+                    "text": "合意形成のプロセスを明文化します。"
+                },
+                {
+                    "id": "D1-035",
+                    "text": "意見の相違は論点ごとに合意形成を図ります。"
+                },
+                {
+                    "id": "D1-036",
+                    "text": "合意形成の証跡を残します。"
+                },
+                {
+                    "id": "D1-037",
+                    "text": "前提条件が崩れる場合は再見積となります。"
+                },
+                {
+                    "id": "D1-038",
+                    "text": "前提条件を要件定義書に明記します。"
+                },
+                {
+                    "id": "D1-039",
+                    "text": "前提条件の確認に先立ち契約を進めません。"
+                },
+                {
+                    "id": "D1-040",
+                    "text": "予算と人員の制約を共有ください。"
+                },
+                {
+                    "id": "D1-041",
+                    "text": "制約に応じて提案内容を調整します。"
+                },
+                {
+                    "id": "D1-042",
+                    "text": "法規制の制約を考慮いたします。"
+                },
+                {
+                    "id": "D1-043",
+                    "text": "外部システムとの依存関係を洗い出します。"
+                },
+                {
+                    "id": "D1-044",
+                    "text": "依存関係の解消策を併記します。"
+                },
+                {
+                    "id": "D1-045",
+                    "text": "依存関係いかんでリスクが変動します。"
+                },
+                {
+                    "id": "D1-046",
+                    "text": "想定ユーザー数を共有いただけますか。"
+                },
+                {
+                    "id": "D1-047",
+                    "text": "想定外の利用にはガードを設けます。"
+                },
+                {
+                    "id": "D1-048",
+                    "text": "想定を更新次第、見積も更新します。"
+                },
+                {
+                    "id": "D1-049",
+                    "text": "初期仮説として三つのシナリオを提示します。"
+                },
+                {
+                    "id": "D1-050",
+                    "text": "仮説検証のため小規模PoCを実施します。"
+                },
+                {
+                    "id": "D1-051",
+                    "text": "仮説が否定された場合は方針を見直します。"
+                },
+                {
+                    "id": "D1-052",
+                    "text": "用語の定義をすり合わせいたします。"
+                },
+                {
+                    "id": "D1-053",
+                    "text": "画面遷移の粒度をすり合わせます。"
+                },
+                {
+                    "id": "D1-054",
+                    "text": "期待値のすり合わせが重要です。"
+                },
+                {
+                    "id": "D1-055",
+                    "text": "仕様間の整合性を確認いたします。"
+                },
+                {
+                    "id": "D1-056",
+                    "text": "データ定義の整合性を担保します。"
+                },
+                {
+                    "id": "D1-057",
+                    "text": "記述の整合性が不十分です。"
+                },
+                {
+                    "id": "D1-058",
+                    "text": "会議資料を事前に共有いたします。"
+                },
+                {
+                    "id": "D1-059",
+                    "text": "共有範囲と公開レベルを指定します。"
+                },
+                {
+                    "id": "D1-060",
+                    "text": "共有事項はポータルに掲示します。"
+                },
+                {
+                    "id": "D1-061",
+                    "text": "認識に相違がないかご確認ください。"
+                },
+                {
+                    "id": "D1-062",
+                    "text": "次回までの宿題をご確認願えますか。"
+                },
+                {
+                    "id": "D1-063",
+                    "text": "文言の表現をご確認の上、修正いたします。"
+                },
+                {
+                    "id": "D1-064",
+                    "text": "本日の論点は三点に集約されます。"
+                },
+                {
+                    "id": "D1-065",
+                    "text": "論点が拡散しないよう議事を進行します。"
+                },
+                {
+                    "id": "D1-066",
+                    "text": "論点ごとに結論を明記します。"
+                },
+                {
+                    "id": "D1-067",
+                    "text": "懸念点は早期に共有いたします。"
+                },
+                {
+                    "id": "D1-068",
+                    "text": "セキュリティ面の懸念点は別紙に記載します。"
+                },
+                {
+                    "id": "D1-069",
+                    "text": "懸念点解消のため代替案を提示します。"
+                },
+                {
+                    "id": "D1-070",
+                    "text": "課題管理表に登録し、担当と期限を設定します。"
+                },
+                {
+                    "id": "D1-071",
+                    "text": "課題の優先度を定義します。"
+                },
+                {
+                    "id": "D1-072",
+                    "text": "未解決の課題を次回に持ち越します。"
+                },
+                {
+                    "id": "D1-073",
+                    "text": "コスト抑制の代替案を二つご用意します。"
+                },
+                {
+                    "id": "D1-074",
+                    "text": "代替案の評価軸を共有します。"
+                },
+                {
+                    "id": "D1-075",
+                    "text": "代替案Aは短期、Bは長期向けです。"
+                },
+                {
+                    "id": "D1-076",
+                    "text": "期間と機能のバランスで妥協点を探ります。"
+                },
+                {
+                    "id": "D1-077",
+                    "text": "妥協点が見いだせない場合は段階導入とします。"
+                },
+                {
+                    "id": "D1-078",
+                    "text": "妥協点の説明責任を果たします。"
+                },
+                {
+                    "id": "D1-079",
+                    "text": "スコープ外の要望はバックログ化します。"
+                },
+                {
+                    "id": "D1-080",
+                    "text": "スコープ確定後に見積を確定します。"
+                },
+                {
+                    "id": "D1-081",
+                    "text": "スコープ変更はCR手続きに従います。"
+                },
+                {
+                    "id": "D1-082",
+                    "text": "受入基準をGherkin形式で定義します。"
+                },
+                {
+                    "id": "D1-083",
+                    "text": "受入基準に合致すれば完了と見なします。"
+                },
+                {
+                    "id": "D1-084",
+                    "text": "受入基準の粒度を合わせます。"
+                },
+                {
+                    "id": "D1-085",
+                    "text": "可用性・性能などの非機能要求を明記します。"
+                },
+                {
+                    "id": "D1-086",
+                    "text": "非機能要求は見落とされがちです。"
+                },
+                {
+                    "id": "D1-087",
+                    "text": "SLA/SLIに非機能要求を落とし込みます。"
+                },
+                {
+                    "id": "D1-088",
+                    "text": "品質要件に基づきテスト観点を整理します。"
+                },
+                {
+                    "id": "D1-089",
+                    "text": "品質要件の優先順を設定します。"
+                },
+                {
+                    "id": "D1-090",
+                    "text": "品質要件はコストに直結します。"
+                },
+                {
+                    "id": "D1-091",
+                    "text": "ご予算いかんでは、ご提案を二案ご用意いたします。"
+                },
+                {
+                    "id": "D1-092",
+                    "text": "承認時期いかんで、スケジュールを前倒し可能でございます。"
+                },
+                {
+                    "id": "D1-093",
+                    "text": "要件の明確さいかんによっては、契約開始を来期に繰り越す可能性がございます。"
+                },
+                {
+                    "id": "D1-094",
+                    "text": "仕様が確定しない限り、正式見積は確定できかねます。"
+                },
+                {
+                    "id": "D1-095",
+                    "text": "受入基準が合意されない限り、UAT開始は難しい状況です。"
+                },
+                {
+                    "id": "D1-096",
+                    "text": "データ提供がない限り、現状把握の精度は担保できません。"
+                },
+                {
+                    "id": "D1-097",
+                    "text": "【会議記録】要件ヒアリング（第一次）"
+                },
+                {
+                    "id": "D1-098",
+                    "text": "目的：新サービスの予約機能に関する要件を把握し、受入基準の叩き台を作成する。"
+                },
+                {
+                    "id": "D1-099",
+                    "text": "1) 背景：既存システムではピーク時の予約が分散せず、機会損失が発生している。"
+                },
+                {
+                    "id": "D1-100",
+                    "text": "2) 目的：直近3か月で予約完了率を10％改善し、キャンセル率を5％低下させる。"
+                },
+                {
+                    "id": "D1-101",
+                    "text": "3) 範囲：Web/アプリ双方の予約フロー、通知、管理画面の一部。"
+                },
+                {
+                    "id": "D1-102",
+                    "text": "4) 非機能：ピーク同時アクセス3,000、平均応答<300ms、可用性99.9%/月。"
+                },
+                {
+                    "id": "D1-103",
+                    "text": "5) 受入基準（案）：主要ユースケース10件に対し正常・例外を網羅、指標が閾値を満たすこと。"
+                },
+                {
+                    "id": "D1-104",
+                    "text": "6) 論点：在庫引当の方式／二重予約防止／本人確認レベル。"
+                },
+                {
+                    "id": "D1-105",
+                    "text": "7) 次回アクション：データ提供、用語定義のすり合わせ、代替案の比較表作成。"
+                },
+                {
+                    "id": "D1-106",
+                    "text": "本日はお時間を頂戴しありがとうございます。要件ヒアリングの目的と進め方をまずご説明いたします。"
+                },
+                {
+                    "id": "D1-107",
+                    "text": "こちらこそ、よろしくお願いいたします。背景からご説明してもよろしいでしょうか。"
+                },
+                {
+                    "id": "D1-108",
+                    "text": "ありがとうございます。背景と目標値を先に確認できれば幸いです。"
+                },
+                {
+                    "id": "D1-109",
+                    "text": "現行はピーク対応が弱く、予約完了率の改善を喫緊の課題と考えております。"
+                },
+                {
+                    "id": "D1-110",
+                    "text": "本フェーズの範囲はWeb/アプリの予約フローと通知、管理画面の一部で相違ございませんか。"
+                },
+                {
+                    "id": "D1-111",
+                    "text": "はい、その理解で問題ございません。"
+                },
+                {
+                    "id": "D1-112",
+                    "text": "優先度は二重予約防止をMust、在庫引当はShouldの想定でいかがでしょうか。"
+                },
+                {
+                    "id": "D1-113",
+                    "text": "妥当だと思います。なお予算いかんでは段階導入も検討可能です。"
+                },
+                {
+                    "id": "D1-114",
+                    "text": "受入基準の叩き台を共有し、次回までにすり合わせをお願いできますでしょうか。"
+                },
+                {
+                    "id": "D1-115",
+                    "text": "承知しました。必要データを提供いたします。"
+                },
+                {
+                    "id": "D1-116",
+                    "text": "本日の結論は、範囲・優先度・受入基準（案）について認識を合わせ、次回までの宿題を確認、という理解で相違ございません。"
+                },
+                {
+                    "id": "D1-117",
+                    "text": "相違ございません。本日はありがとうございました。"
+                },
+                {
+                    "id": "D1-118",
+                    "text": "こちらこそありがとうございました。引き続きよろしくお願い申し上げます。"
+                },
+                {
+                    "id": "D1-119",
+                    "text": "良い質問は、相手の考えを変えるよりも、相手の考えを“見える化”する。"
+                },
+                {
+                    "id": "D1-120",
+                    "text": "曖昧な問いかけは、曖昧な答えしか引き出さない。"
+                },
+                {
+                    "id": "D1-121",
+                    "text": "したがって、聞き手は仮説を持ちつつも、結論を押し付けない姿勢が求められる。"
+                },
+                {
+                    "id": "D1-122",
+                    "text": "具体↔抽象の往復や、前提の違いの確認は、ときに答えそのものより価値がある。"
+                },
+                {
+                    "id": "D1-123",
+                    "text": "良いヒアリングとは、相手の言葉で語られた論点を、整理された構造として残す営みである。"
+                }
+            ],
+            "vietnamese": [
+                {
+                    "id": "D1-001",
+                    "text": "Hôm nay chúng tôi chia sẻ mục tiêu và cách tiến hành buổi nghe yêu cầu."
+                },
+                {
+                    "id": "D1-002",
+                    "text": "Trong buổi hearing, chúng tôi sẽ hệ thống hóa bối cảnh và vấn đề."
+                },
+                {
+                    "id": "D1-003",
+                    "text": "Ở buổi hearing kế tiếp, xin xác nhận tạm thời tiêu chí chấp nhận."
+                },
+                {
+                    "id": "D1-004",
+                    "text": "Trước hết cho phép chúng tôi liệt kê toàn diện các nguyện vọng của quý công ty."
+                },
+                {
+                    "id": "D1-005",
+                    "text": "Chúng tôi ghi nhận tách biệt “nguyện vọng” và “yêu cầu”."
+                },
+                {
+                    "id": "D1-006",
+                    "text": "Xin trao đổi về việc gán độ ưu tiên cho các nguyện vọng."
+                },
+                {
+                    "id": "D1-007",
+                    "text": "Yêu cầu sẽ được định nghĩa kèm tiêu chí chấp nhận."
+                },
+                {
+                    "id": "D1-008",
+                    "text": "Cũng ghi rõ các yêu cầu phi chức năng."
+                },
+                {
+                    "id": "D1-009",
+                    "text": "Để trực quan, chuyển yêu cầu thành use case."
+                },
+                {
+                    "id": "D1-010",
+                    "text": "Đặc tả là tài liệu cụ thể hóa yêu cầu."
+                },
+                {
+                    "id": "D1-011",
+                    "text": "Khi có thay đổi đặc tả sẽ nêu rõ phạm vi ảnh hưởng."
+                },
+                {
+                    "id": "D1-012",
+                    "text": "Trước khi đặc tả chốt, báo giá là tạm thời."
+                },
+                {
+                    "id": "D1-013",
+                    "text": "Để nắm hiện trạng, vui lòng chia sẻ flow hệ thống hiện tại."
+                },
+                {
+                    "id": "D1-014",
+                    "text": "Dựa trên hiện trạng, chúng tôi liệt kê rủi ro chuyển đổi."
+                },
+                {
+                    "id": "D1-015",
+                    "text": "Kết quả nắm bắt hiện trạng sẽ ghi vào biên bản."
+                },
+                {
+                    "id": "D1-016",
+                    "text": "Hiểu bối cảnh làm rõ căn cứ của độ ưu tiên."
+                },
+                {
+                    "id": "D1-017",
+                    "text": "Khác biệt bối cảnh có thể gây hiểu lầm."
+                },
+                {
+                    "id": "D1-018",
+                    "text": "Bối cảnh được xác nhận ở phần mở đầu hearing."
+                },
+                {
+                    "id": "D1-019",
+                    "text": "Biến mục tiêu thành chỉ số định lượng."
+                },
+                {
+                    "id": "D1-020",
+                    "text": "Mục tiêu mơ hồ sẽ làm phình to phạm vi."
+                },
+                {
+                    "id": "D1-021",
+                    "text": "Không nhầm lẫn mục tiêu với phương tiện."
+                },
+                {
+                    "id": "D1-022",
+                    "text": "Làm rõ phạm vi của giai đoạn này."
+                },
+                {
+                    "id": "D1-023",
+                    "text": "Hạng mục ngoài phạm vi sẽ đề xuất riêng."
+                },
+                {
+                    "id": "D1-024",
+                    "text": "Xác nhận điều kiện biên của phạm vi."
+                },
+                {
+                    "id": "D1-025",
+                    "text": "Sắp xếp ưu tiên theo Must/Should/Could."
+                },
+                {
+                    "id": "D1-026",
+                    "text": "Rà soát ưu tiên dựa trên ảnh hưởng nghiệp vụ."
+                },
+                {
+                    "id": "D1-027",
+                    "text": "Triển khai theo từng giai đoạn dựa trên ưu tiên."
+                },
+                {
+                    "id": "D1-028",
+                    "text": "Trực quan hóa phạm vi ảnh hưởng của thay đổi đặc tả."
+                },
+                {
+                    "id": "D1-029",
+                    "text": "Xác nhận ảnh hưởng tới liên kết dữ liệu."
+                },
+                {
+                    "id": "D1-030",
+                    "text": "Tùy phạm vi ảnh hưởng mà lịch trình biến động."
+                },
+                {
+                    "id": "D1-031",
+                    "text": "Sắp xếp lợi ích của các bên liên quan."
+                },
+                {
+                    "id": "D1-032",
+                    "text": "Lấy đồng thuận của stakeholders chính trước."
+                },
+                {
+                    "id": "D1-033",
+                    "text": "Chia sẻ danh sách stakeholders."
+                },
+                {
+                    "id": "D1-034",
+                    "text": "Văn bản hóa quy trình hình thành đồng thuận."
+                },
+                {
+                    "id": "D1-035",
+                    "text": "Khác biệt ý kiến sẽ tạo đồng thuận theo từng luận điểm."
+                },
+                {
+                    "id": "D1-036",
+                    "text": "Lưu lại chứng cứ về sự đồng thuận."
+                },
+                {
+                    "id": "D1-037",
+                    "text": "Nếu tiền đề thay đổi sẽ báo giá lại."
+                },
+                {
+                    "id": "D1-038",
+                    "text": "Ghi rõ điều kiện tiên quyết trong tài liệu yêu cầu."
+                },
+                {
+                    "id": "D1-039",
+                    "text": "Chưa xác nhận tiền đề thì không tiến hành hợp đồng."
+                },
+                {
+                    "id": "D1-040",
+                    "text": "Xin chia sẻ ràng buộc về ngân sách và nhân sự."
+                },
+                {
+                    "id": "D1-041",
+                    "text": "Điều chỉnh đề xuất theo ràng buộc."
+                },
+                {
+                    "id": "D1-042",
+                    "text": "Tính đến ràng buộc của quy định pháp luật."
+                },
+                {
+                    "id": "D1-043",
+                    "text": "Liệt kê phụ thuộc với hệ thống ngoài."
+                },
+                {
+                    "id": "D1-044",
+                    "text": "Ghi kèm phương án giải quyết phụ thuộc."
+                },
+                {
+                    "id": "D1-045",
+                    "text": "Rủi ro thay đổi tùy thuộc các quan hệ phụ thuộc."
+                },
+                {
+                    "id": "D1-046",
+                    "text": "Xin chia sẻ số lượng người dùng dự trù."
+                },
+                {
+                    "id": "D1-047",
+                    "text": "Với sử dụng ngoài dự trù sẽ đặt chặn."
+                },
+                {
+                    "id": "D1-048",
+                    "text": "Cập nhật dự trù thì sẽ cập nhật báo giá."
+                },
+                {
+                    "id": "D1-049",
+                    "text": "Đề xuất ba kịch bản như giả thuyết ban đầu."
+                },
+                {
+                    "id": "D1-050",
+                    "text": "Thực hiện PoC nhỏ để kiểm chứng giả thuyết."
+                },
+                {
+                    "id": "D1-051",
+                    "text": "Nếu giả thuyết bị bác bỏ sẽ rà soát phương châm."
+                },
+                {
+                    "id": "D1-052",
+                    "text": "Thống nhất định nghĩa thuật ngữ."
+                },
+                {
+                    "id": "D1-053",
+                    "text": "Thống nhất mức độ chi tiết chuyển màn."
+                },
+                {
+                    "id": "D1-054",
+                    "text": "Việc thống nhất kỳ vọng là quan trọng."
+                },
+                {
+                    "id": "D1-055",
+                    "text": "Xác nhận tính nhất quán giữa các đặc tả."
+                },
+                {
+                    "id": "D1-056",
+                    "text": "Đảm bảo tính nhất quán định nghĩa dữ liệu."
+                },
+                {
+                    "id": "D1-057",
+                    "text": "Tính nhất quán trong mô tả chưa đủ."
+                },
+                {
+                    "id": "D1-058",
+                    "text": "Chia sẻ tài liệu họp trước."
+                },
+                {
+                    "id": "D1-059",
+                    "text": "Chỉ định phạm vi chia sẻ và mức công khai."
+                },
+                {
+                    "id": "D1-060",
+                    "text": "Nội dung chia sẻ sẽ đăng trên portal."
+                },
+                {
+                    "id": "D1-061",
+                    "text": "Vui lòng xác nhận không có khác biệt về nhận thức."
+                },
+                {
+                    "id": "D1-062",
+                    "text": "Vui lòng xác nhận các việc cần làm đến buổi sau."
+                },
+                {
+                    "id": "D1-063",
+                    "text": "Vui lòng xác nhận cách diễn đạt để chúng tôi chỉnh sửa."
+                },
+                {
+                    "id": "D1-064",
+                    "text": "Luận điểm hôm nay gói trong ba điểm."
+                },
+                {
+                    "id": "D1-065",
+                    "text": "Điều phối để luận điểm không loãng."
+                },
+                {
+                    "id": "D1-066",
+                    "text": "Nêu rõ kết luận theo từng luận điểm."
+                },
+                {
+                    "id": "D1-067",
+                    "text": "Chia sẻ sớm các điểm lo ngại."
+                },
+                {
+                    "id": "D1-068",
+                    "text": "Lo ngại về bảo mật ghi ở phụ lục."
+                },
+                {
+                    "id": "D1-069",
+                    "text": "Đưa phương án thay thế để giải tỏa lo ngại."
+                },
+                {
+                    "id": "D1-070",
+                    "text": "Đăng vào bảng quản lý vấn đề, gán phụ trách và hạn."
+                },
+                {
+                    "id": "D1-071",
+                    "text": "Xác định độ ưu tiên của vấn đề."
+                },
+                {
+                    "id": "D1-072",
+                    "text": "Vấn đề chưa giải quyết chuyển sang lần sau."
+                },
+                {
+                    "id": "D1-073",
+                    "text": "Chuẩn bị hai phương án thay thế để tiết kiệm chi phí."
+                },
+                {
+                    "id": "D1-074",
+                    "text": "Chia sẻ trục đánh giá cho các phương án."
+                },
+                {
+                    "id": "D1-075",
+                    "text": "Phương án A cho ngắn hạn, B cho dài hạn."
+                },
+                {
+                    "id": "D1-076",
+                    "text": "Tìm điểm thỏa hiệp giữa thời gian và chức năng."
+                },
+                {
+                    "id": "D1-077",
+                    "text": "Nếu không tìm được thỏa hiệp sẽ triển khai theo giai đoạn."
+                },
+                {
+                    "id": "D1-078",
+                    "text": "Thực hiện trách nhiệm giải trình về điểm thỏa hiệp."
+                },
+                {
+                    "id": "D1-079",
+                    "text": "Yêu cầu ngoài phạm vi đưa vào backlog."
+                },
+                {
+                    "id": "D1-080",
+                    "text": "Chốt báo giá sau khi xác định phạm vi."
+                },
+                {
+                    "id": "D1-081",
+                    "text": "Thay đổi phạm vi tuân theo thủ tục CR."
+                },
+                {
+                    "id": "D1-082",
+                    "text": "Định nghĩa tiêu chí chấp nhận theo dạng Gherkin."
+                },
+                {
+                    "id": "D1-083",
+                    "text": "Nếu thỏa tiêu chí chấp nhận sẽ xem là hoàn tất."
+                },
+                {
+                    "id": "D1-084",
+                    "text": "Căn chỉnh độ chi tiết của tiêu chí chấp nhận."
+                },
+                {
+                    "id": "D1-085",
+                    "text": "Ghi rõ NFR như tính sẵn sàng, hiệu năng."
+                },
+                {
+                    "id": "D1-086",
+                    "text": "NFR thường dễ bị bỏ sót."
+                },
+                {
+                    "id": "D1-087",
+                    "text": "Chuyển NFR thành SLA/SLI."
+                },
+                {
+                    "id": "D1-088",
+                    "text": "Sắp xếp các góc độ test dựa trên yêu cầu chất lượng."
+                },
+                {
+                    "id": "D1-089",
+                    "text": "Thiết lập thứ tự ưu tiên cho yêu cầu chất lượng."
+                },
+                {
+                    "id": "D1-090",
+                    "text": "Yêu cầu chất lượng liên quan trực tiếp đến chi phí."
+                },
+                {
+                    "id": "D1-091",
+                    "text": "Tùy vào ngân sách, chúng tôi sẽ chuẩn bị hai phương án."
+                },
+                {
+                    "id": "D1-092",
+                    "text": "Tùy thời điểm phê duyệt, có thể đẩy sớm lịch trình."
+                },
+                {
+                    "id": "D1-093",
+                    "text": "Tùy mức độ rõ ràng của yêu cầu, có thể dời khởi động hợp đồng sang quý sau."
+                },
+                {
+                    "id": "D1-094",
+                    "text": "Trừ khi đặc tả được chốt, chúng tôi chưa thể chốt báo giá chính thức."
+                },
+                {
+                    "id": "D1-095",
+                    "text": "Nếu chưa thống nhất tiêu chí chấp nhận, khó có thể bắt đầu UAT."
+                },
+                {
+                    "id": "D1-096",
+                    "text": "Nếu không có cung cấp dữ liệu, không thể đảm bảo độ chính xác khi nắm hiện trạng."
+                },
+                {
+                    "id": "D1-097",
+                    "text": "[Biên bản] Nghe yêu cầu (lần 1)"
+                },
+                {
+                    "id": "D1-098",
+                    "text": "Mục tiêu: Nắm yêu cầu về chức năng đặt chỗ cho dịch vụ mới và tạo bản nháp tiêu chí chấp nhận."
+                },
+                {
+                    "id": "D1-099",
+                    "text": "1) Bối cảnh: Hệ thống hiện tại không phân tán đặt chỗ giờ cao điểm, gây mất cơ hội."
+                },
+                {
+                    "id": "D1-100",
+                    "text": "2) Mục tiêu: Trong 3 tháng tới, cải thiện tỉ lệ hoàn tất đặt chỗ 10% và giảm hủy 5%."
+                },
+                {
+                    "id": "D1-101",
+                    "text": "3) Phạm vi: Luồng đặt chỗ trên Web/app, thông báo, một phần màn quản trị."
+                },
+                {
+                    "id": "D1-102",
+                    "text": "4) Phi chức năng: Đồng thời cao điểm 3.000, trung bình đáp ứng <300ms, khả dụng 99.9%/tháng."
+                },
+                {
+                    "id": "D1-103",
+                    "text": "5) Tiêu chí chấp nhận (dự thảo): Bao phủ bình thường/ngoại lệ cho 10 use case chính; chỉ số đạt ngưỡng."
+                },
+                {
+                    "id": "D1-104",
+                    "text": "6) Luận điểm: Cách cấp phát tồn kho/ chống đặt chỗ trùng/ mức xác thực người dùng."
+                },
+                {
+                    "id": "D1-105",
+                    "text": "7) Hành động tiếp: Cung cấp dữ liệu, thống nhất thuật ngữ, lập bảng so sánh phương án."
+                },
+                {
+                    "id": "D1-106",
+                    "text": "Cảm ơn đã dành thời gian. Trước tiên xin trình bày mục tiêu và cách tiến hành buổi nghe yêu cầu."
+                },
+                {
+                    "id": "D1-107",
+                    "text": "Chúng tôi cũng mong nhận được hỗ trợ. Tôi có thể trình bày từ bối cảnh được không ạ?"
+                },
+                {
+                    "id": "D1-108",
+                    "text": "Xin cảm ơn. Rất mong xác nhận trước về bối cảnh và các chỉ số mục tiêu."
+                },
+                {
+                    "id": "D1-109",
+                    "text": "Hiện tại xử lý giờ cao điểm còn yếu, cải thiện tỉ lệ hoàn tất đặt chỗ là vấn đề cấp bách."
+                },
+                {
+                    "id": "D1-110",
+                    "text": "Phạm vi giai đoạn này là luồng đặt chỗ Web/app, thông báo và một phần màn quản trị, hiểu vậy có khác biệt không ạ?"
+                },
+                {
+                    "id": "D1-111",
+                    "text": "Vâng, hiểu như vậy là không vấn đề gì."
+                },
+                {
+                    "id": "D1-112",
+                    "text": "Về ưu tiên, chống đặt chỗ trùng là Must, cấp phát tồn kho là Should, như vậy được chứ ạ?"
+                },
+                {
+                    "id": "D1-113",
+                    "text": "Tôi cho là hợp lý. Ngoài ra tùy ngân sách có thể cân nhắc triển khai theo giai đoạn."
+                },
+                {
+                    "id": "D1-114",
+                    "text": "Xin chia sẻ bản nháp tiêu chí chấp nhận và nhờ anh/chị thống nhất đến buổi sau."
+                },
+                {
+                    "id": "D1-115",
+                    "text": "Đã rõ. Chúng tôi sẽ cung cấp dữ liệu cần thiết."
+                },
+                {
+                    "id": "D1-116",
+                    "text": "Kết luận hôm nay là thống nhất nhận thức về phạm vi, ưu tiên, tiêu chí chấp nhận (dự thảo) và xác nhận việc cần làm đến buổi sau — hiểu vậy có khác biệt không ạ?"
+                },
+                {
+                    "id": "D1-117",
+                    "text": "Không có khác biệt. Xin cảm ơn hôm nay."
+                },
+                {
+                    "id": "D1-118",
+                    "text": "Chúng tôi cũng cảm ơn. Mong tiếp tục hợp tác."
+                },
+                {
+                    "id": "D1-119",
+                    "text": "Câu hỏi hay không thay đổi suy nghĩ mà làm cho suy nghĩ trở nên 'nhìn thấy được'."
+                },
+                {
+                    "id": "D1-120",
+                    "text": "Một câu hỏi mơ hồ chỉ kéo theo câu trả lời mơ hồ."
+                },
+                {
+                    "id": "D1-121",
+                    "text": "Người nghe cần có giả thuyết nhưng không áp đặt kết luận."
+                },
+                {
+                    "id": "D1-122",
+                    "text": "Qua lại giữa cụ thể và trừu tượng, xác nhận khác biệt tiền đề đôi khi có giá trị hơn cả câu trả lời."
+                },
+                {
+                    "id": "D1-123",
+                    "text": "Nghe yêu cầu tốt là để lại cấu trúc đã được sắp xếp của luận điểm bằng chính ngôn từ của đối phương."
+                }
+            ]
+        }
     }
 ];
